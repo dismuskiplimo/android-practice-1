@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">IAmRich</string>
+    <string name="company_name">TechnoPro Solutions Kenya Limited</string>
+    <string name="company_logo_description">TechnoPro Solutions Kenya Limited Logo</string>
+    <string name="launch_game">Launch Game</string>
+    <string name="roll_dice">Roll Dice</string>
+    <string name="play_piano">Play Piano</string>
+    <string name="eight_ball">Magic 8 Ball</string>
+    <string name="roll_ball">Roll Ball</string>
+    <string name="las_vegas_logo">Las Vegas Logo</string>
+    <string name="right_dice">Right Dice</string>
+    <string name="left_dice">Left Dice</string>
+    <string name="back">Back</string>
+    <string name="exit">Exit</string>
+</resources>
