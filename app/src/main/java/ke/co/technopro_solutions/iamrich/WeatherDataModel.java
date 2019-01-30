@@ -63,7 +63,9 @@ public class WeatherDataModel {
     }
 
     public String getTemp() {
-        return temp + "° C";
+        int local_temp;
+        local_temp = (int) Math.rint(temp-273.15);
+        return local_temp + "° C";
     }
 
     public String getIcon() {

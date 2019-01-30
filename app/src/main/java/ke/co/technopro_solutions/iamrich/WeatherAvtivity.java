@@ -46,10 +46,6 @@ public class WeatherAvtivity extends AppCompatActivity {
 
     protected LocationListener locationListener;
 
-    protected TextView city_name;
-
-    protected ImageView weather_icon;
-
     protected String location;
 
     protected String city;
@@ -67,11 +63,27 @@ public class WeatherAvtivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if(location == null){
+        Intent intent = getIntent();
+
+        String intent_city = intent.getStringExtra("City");
+
+        if(intent_city == null){
             getCurrentLocation();
+        }else{
+            getWeatherForCity(intent_city);
+
         }
 
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if(locationManager != null){
+            locationManager.removeUpdates(locationListener);
+        }
     }
 
     protected void getCurrentLocation() {
@@ -80,12 +92,10 @@ public class WeatherAvtivity extends AppCompatActivity {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                city_name = findViewById(R.id.city_field);
 
-                String latitude = String.valueOf(location.getLatitude());
-                String longitude = String.valueOf(location.getLongitude());
 
-//                city_name.setText("Longitude " + longitude + " \n latitude " + latitude);
+                String latitude     = String.valueOf(location.getLatitude());
+                String longitude    = String.valueOf(location.getLongitude());
 
                 RequestParams params = new RequestParams();
 
@@ -131,6 +141,14 @@ public class WeatherAvtivity extends AppCompatActivity {
         locationManager.requestLocationUpdates(LOCATION_PROVIDER, MIN_TIME, MIN_DISTANCE, locationListener);
     }
 
+    protected void getWeatherForCity(String city){
+        RequestParams params = new RequestParams();
+        params.put("q", city);
+        params.put("appid", APP_ID);
+
+        letsDoSomeNetworking(params);
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -157,17 +175,7 @@ public class WeatherAvtivity extends AppCompatActivity {
 
                 WeatherDataModel weatherDataModel = WeatherDataModel.fromJSON(response);
 
-                if(weatherDataModel != null){
-                    city_name = findViewById(R.id.city_field);
-
-                    weather_icon = findViewById(R.id.weather_icon);
-
-                    int resourceId = getResources().getIdentifier(weatherDataModel.getIcon(), "drawable",getPackageName());
-
-                    weather_icon.setImageResource(resourceId);
-
-                    city_name.setText(weatherDataModel.getCity());
-                }
+                updateUI(weatherDataModel);
 
             }
 
@@ -177,6 +185,23 @@ public class WeatherAvtivity extends AppCompatActivity {
                 Log.d("Clima", "Status Code: " + statusCode);
 
                 Toast.makeText(getApplicationContext(), "Request Failed", Toast.LENGTH_SHORT).show();
+            }
+
+            public void updateUI(WeatherDataModel weatherDataModel){
+                if(weatherDataModel != null){
+                    TextView city_name      = findViewById(R.id.city_field);
+                    TextView temp           = findViewById(R.id.temp);
+                    ImageView weather_icon  = findViewById(R.id.weather_icon);
+                    int resourceId;
+
+                    resourceId = getResources().getIdentifier(weatherDataModel.getIcon(), "drawable",getPackageName());
+
+                    temp.setText(weatherDataModel.getTemp());
+                    weather_icon.setImageResource(resourceId);
+                    city_name.setText(weatherDataModel.getCity());
+
+
+                }
             }
         });
     }

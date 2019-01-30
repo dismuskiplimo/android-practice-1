@@ -17,4 +17,5 @@
     <string name="enter_ciy_name">Enter City Name</string>
     <string name="back">Back</string>
     <string name="exit">Exit</string>
+    <string name="not_applicable">N/A</string>
 </resources>
