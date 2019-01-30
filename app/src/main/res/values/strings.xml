@@ -10,6 +10,11 @@
     <string name="las_vegas_logo">Las Vegas Logo</string>
     <string name="right_dice">Right Dice</string>
     <string name="left_dice">Left Dice</string>
+    <string name="check_weather">Check Weather</string>
+    <string name="weather_updates">Weather Updates</string>
+    <string name="city_name">City</string>
+    <string name="choose_location">Choose Location</string>
+    <string name="enter_ciy_name">Enter City Name</string>
     <string name="back">Back</string>
     <string name="exit">Exit</string>
 </resources>

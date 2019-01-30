@@ -45,4 +45,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    public void loadWeatherActivity(View v){
+        startActivity(new Intent(MainActivity.this, WeatherAvtivity.class));
+    }
 }

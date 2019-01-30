@@ -42,41 +42,67 @@
 
     <Button
         android:id="@+id/play_dice"
-        android:layout_width="wrap_content"
-        android:layout_height="46dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
 
+        android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginBottom="8dp"
+
+
+
         android:text="@string/roll_dice"
 
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ball_button"
+        app:layout_constraintBottom_toTopOf="@+id/play_piano"
+
         />
 
     <Button
         android:id="@+id/ball_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
 
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
 
         android:text="@string/eight_ball"
-        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintStart_toEndOf="@+id/play_dice"
-        app:layout_constraintEnd_toStartOf="@+id/play_piano"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/check_weather"
+
         />
 
     <Button
         android:id="@+id/play_piano"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
 
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
 
         android:text="@string/play_piano"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/check_weather"
         app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <Button
+        android:id="@+id/check_weather"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
+
+        android:text="@string/check_weather"
+        app:layout_constraintStart_toEndOf="@+id/play_piano"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ball_button"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="loadWeatherActivity"
+        />
+
 </android.support.constraint.ConstraintLayout>
